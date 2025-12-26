@@ -1,12 +1,12 @@
 {
-  "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/portfolio/browser",
-  "framework": "angular",
-  "routes": [
+  "outputDirectory": "dist/portfolio",
+  "framework": null,
+  "installCommand": "npm install",
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
