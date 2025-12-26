@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx @angular/cli@latest new portfolio --routing=true --style=scss --skip-git=true)",
+      "Bash(mkdir -p src/app/{components/{about,skills,projects,experience},models,services})",
+      "Bash(mkdir -p src/assets/{images,fonts})",
+      "Bash(mkdir -p src/environments)",
+      "Bash(tree -L 3 -I node_modules /Volumes/D/zubair/Zubair-Angular-Portfolio)",
+      "Bash(npm install)",
+      "Bash(find /Volumes/D/zubair/Zubair-Angular-Portfolio -type f ( -name \"*.jpg\" -o -name \"*.jpeg\" -o -name \"*.png\" -o -name \"*.gif\" -o -name \"*.webp\" ) -not -path \"*/node_modules/*\")",
+      "Bash(npm run build)",
+      "Bash(git init)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
