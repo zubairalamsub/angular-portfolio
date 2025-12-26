@@ -231,6 +231,10 @@ import { CommonModule } from '@angular/common';
 
     /* Responsive */
     @media (max-width: 968px) {
+      .about-section {
+        padding-top: 140px;
+      }
+
       .about-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -261,6 +265,10 @@ import { CommonModule } from '@angular/common';
     }
 
     @media (max-width: 640px) {
+      .about-section {
+        padding-top: 160px;
+      }
+
       .profile-image {
         width: 200px;
         height: 200px;
