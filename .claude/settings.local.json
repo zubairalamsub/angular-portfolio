@@ -9,7 +9,13 @@
       "Bash(npm install)",
       "Bash(find /Volumes/D/zubair/Zubair-Angular-Portfolio -type f ( -name \"*.jpg\" -o -name \"*.jpeg\" -o -name \"*.png\" -o -name \"*.gif\" -o -name \"*.webp\" ) -not -path \"*/node_modules/*\")",
       "Bash(npm run build)",
-      "Bash(git init)"
+      "Bash(git init)",
+      "Bash(git remote add origin https://github.com/zubairalamsub/angular-portfolio.git)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)",
+      "Bash(git add src/environments/environment.ts src/environments/environment.prod.ts .gitignore)",
+      "Bash(git commit -m \"Add environment files for Vercel deployment\")",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
