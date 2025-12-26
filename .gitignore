@@ -42,5 +42,6 @@ testem.log
 Thumbs.db
 
 # Environment files with API keys (keep secure!)
-src/environments/environment.ts
-src/environments/environment.prod.ts
+# Note: These are needed for Vercel deployment
+# src/environments/environment.ts
+# src/environments/environment.prod.ts
