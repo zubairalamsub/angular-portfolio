@@ -42,6 +42,6 @@ testem.log
 Thumbs.db
 
 # Environment files with API keys (keep secure!)
-# Note: These are needed for Vercel deployment
-# src/environments/environment.ts
-# src/environments/environment.prod.ts
+# Use environment.template.ts as reference and set GEMINI_API_KEY env var in Vercel
+src/environments/environment.ts
+src/environments/environment.prod.ts
