@@ -2,45 +2,49 @@
 
 /**
  * Inject Vercel environment variables into Angular environment files
- * This runs during Vercel build to replace placeholders with actual values
+ * This runs during Vercel build to create environment files with actual values
  */
 
 const fs = require('fs');
 const path = require('path');
 
 // Get the API key from Vercel environment variable
-const apiKey = process.env.GEMINI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY || '';
 
 if (!apiKey) {
-  console.error('❌ ERROR: GEMINI_API_KEY environment variable is not set!');
-  console.error('Please add it in Vercel Dashboard → Settings → Environment Variables');
-  process.exit(1);
+  console.warn('⚠️  WARNING: GEMINI_API_KEY environment variable is not set!');
+  console.warn('Chatbot will use fallback responses instead of AI.');
 }
 
-console.log('✅ Found GEMINI_API_KEY environment variable');
+console.log('✅ Creating environment files...');
 
-// Files to update
-const files = [
-  path.join(__dirname, '../src/environments/environment.ts'),
-  path.join(__dirname, '../src/environments/environment.prod.ts')
-];
+// Environment file templates
+const envContent = `export const environment = {
+  production: false,
+  geminiApiKey: '${apiKey}'
+};
+`;
 
-files.forEach(filePath => {
-  if (!fs.existsSync(filePath)) {
-    console.warn(`⚠️  File not found: ${filePath}`);
-    return;
-  }
+const envProdContent = `export const environment = {
+  production: true,
+  geminiApiKey: '${apiKey}'
+};
+`;
 
-  // Read the file
-  let content = fs.readFileSync(filePath, 'utf8');
+// Ensure environments directory exists
+const envDir = path.join(__dirname, '../src/environments');
+if (!fs.existsSync(envDir)) {
+  fs.mkdirSync(envDir, { recursive: true });
+}
 
-  // Replace the placeholder with actual API key
-  const updatedContent = content.replace('__GEMINI_API_KEY__', apiKey);
+// Create environment files
+const envPath = path.join(envDir, 'environment.ts');
+const envProdPath = path.join(envDir, 'environment.prod.ts');
 
-  // Write back
-  fs.writeFileSync(filePath, updatedContent, 'utf8');
+fs.writeFileSync(envPath, envContent, 'utf8');
+console.log(`✅ Created: environment.ts`);
 
-  console.log(`✅ Injected API key into: ${path.basename(filePath)}`);
-});
+fs.writeFileSync(envProdPath, envProdContent, 'utf8');
+console.log(`✅ Created: environment.prod.ts`);
 
-console.log('🚀 Environment variables injected successfully!');
+console.log('🚀 Environment files created successfully!');
